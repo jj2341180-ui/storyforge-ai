@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(233, 196, 106, 0.08), transparent),
+    radial-gradient(900px 500px at -10% 20%, rgba(90, 120, 220, 0.1), transparent);
+}
+
+@layer components {
+  .card {
+    @apply bg-ink-850/80 border border-ink-700 rounded-2xl;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold
+      transition disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-gold-400 text-ink-950 hover:bg-gold-300 shadow-glow;
+  }
+  .btn-secondary {
+    @apply btn bg-ink-700 text-slate-100 hover:bg-ink-600 border border-ink-600;
+  }
+  .btn-ghost {
+    @apply btn text-slate-300 hover:bg-ink-800;
+  }
+  .input {
+    @apply w-full bg-ink-900 border border-ink-700 rounded-xl px-3.5 py-2.5 text-sm text-slate-100
+      placeholder:text-slate-500 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold;
+  }
+  .tab {
+    @apply px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-ink-800
+      whitespace-nowrap transition;
+  }
+  .tab-active {
+    @apply bg-ink-700 text-gold-300;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3756;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Desktop layout on a portrait phone: a 1280px-wide same-origin iframe (its own wide
+   viewport makes media queries resolve like a real desktop) scaled to fit the screen.
+   The device never rotates; the wrapper carries the scaled scroll height. */
+.sf-desktop-wrap {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: #070910;
+}
+.sf-desktop-frame {
+  display: block;
+  transform-origin: top left;
+  background: #070910;
+}

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/.venv/
+
+# Node / build
+node_modules/
+frontend/dist/
+voice-studio/node_modules/
+voice-studio/dist/
+
+# Local user data (projects, media, exports, db)
+data/
+
+# OS / editor
+.DS_Store
+*.log
+.idea/
+.vscode/
+tsconfig.tsbuildinfo

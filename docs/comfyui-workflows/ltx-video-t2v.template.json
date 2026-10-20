@@ -1,0 +1,31 @@
+{
+  "_comment": "Reference API-format workflow for LTX-Video 2B text-to-video (free open weights, ~8 GB VRAM). Open ComfyUI, build/load the official LTX-Video text-to-video example, then Save (API Format) and replace the prompt/seed/frame values with the {placeholders} below. Node ids (3,4,5,6,7,8) MUST match your exported workflow. StoryForge substitutes: {prompt} {seed} {frames} {fps} {duration}.",
+  "3": {
+    "class_type": "LTXVConditioning",
+    "inputs": { "positive_prompt": "{prompt}", "negative_prompt": "blurry, distorted faces, extra limbs, watermark", "frame_rate": "{fps}" }
+  },
+  "4": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": { "width": 768, "height": 512, "length": "{frames}", "batch_size": 1 }
+  },
+  "5": {
+    "class_type": "LTXVScheduler",
+    "inputs": { "steps": 30, "max_shift": 2.05, "base_shift": 0.95, "stretch": True, "terminal": 0.1, "latent": ["4", 0] }
+  },
+  "6": {
+    "class_type": "LTXVLoader",
+    "inputs": { "ckpt_name": "ltx-video-2b-v0.9.5.safetensors" }
+  },
+  "7": {
+    "class_type": "RandomNoise",
+    "inputs": { "noise_seed": "{seed}" }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "inputs": { "samples": ["5", 0], "vae": ["6", 1] }
+  },
+  "9": {
+    "class_type": "SaveVideo",
+    "inputs": { "images": ["8", 0], "filename_prefix": "storyforge_short", "format": "mp4", "fps": "{fps}" }
+  }
+}

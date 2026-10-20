@@ -1,0 +1,11 @@
+**/node_modules
+**/.venv
+**/dist
+**/__pycache__
+data/
+.git/
+docs/screenshots/
+*.log
+backend/e2e_test.py
+backend/ui_test.py
+backend/verify_visuals.py

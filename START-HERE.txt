@@ -1,0 +1,49 @@
+==========================================================
+ STORYFORGE AI — START HERE (beginner guide)
+==========================================================
+
+WHAT THIS IS
+A free app that turns your story ideas into narrated videos
+(MP4 files you can upload to YouTube). No subscription, no
+credit card, no paid AI service.
+
+----------------------------------------------------------
+ OPTION A — JUST USE THE LINK (easiest, nothing to install)
+----------------------------------------------------------
+Your current live link is saved in PUBLIC-LINK.txt.
+Open it on any phone, tablet, or computer browser (Chrome,
+Safari, Edge). On Android Chrome use Menu > "Install app";
+on iPhone Safari use Share > "Add to Home Screen" to get an
+icon like a normal app.
+
+Note: this free link is temporary. If it ever stops loading,
+ask your assistant to create a new one, or use Option B.
+
+----------------------------------------------------------
+ OPTION B — RUN IT ON YOUR OWN COMPUTER (permanent, free)
+----------------------------------------------------------
+1. Install these two free programs (one-time):
+     Python:   https://www.python.org/downloads/  (tick "Add
+               python.exe to PATH" during install on Windows)
+     Node.js:  https://nodejs.org/  (pick the LTS button)
+2. Unzip this folder anywhere, e.g. your Desktop.
+3. Windows: double-click  start-all.bat
+   Mac/Linux: open Terminal in this folder and run:
+              ./start-all.sh
+4. Wait for it to finish, then open this in Chrome:
+              http://localhost:8000
+5. To make it a clickable app icon: Chrome menu >
+   "Cast, save and share" > "Install page as app".
+
+Your videos, scripts and voices stay on your own computer.
+
+----------------------------------------------------------
+ NEED HELP?
+----------------------------------------------------------
+- Full walkthrough (phone access, auto-start, free hosting):
+  see ACCESS-GUIDE.md and DEPLOY.md
+- If a voice is missing: run backend/download-voices.bat
+- Minimum computer: 4 GB RAM is comfortable; the app itself
+  runs on 2 GB. Video-generation models (Mode A) need a
+  gaming NVIDIA GPU; the standard story-to-video pipeline
+  works on ordinary computers.

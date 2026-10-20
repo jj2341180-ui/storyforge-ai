@@ -1,0 +1,26 @@
+# StoryForge AI systemd user service (Linux)
+# Install:
+#   mkdir -p ~/.config/systemd/user
+#   cp deploy/storyforge.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now storyforge
+#   loginctl enable-linger "$USER"
+#
+# Adjust PROJECT_DIR and PYTHON if your paths differ.
+
+[Unit]
+Description=StoryForge AI local video creator (API + built UI on port 8000)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/storyforge-ai/backend
+Environment=PYTHONUNBUFFERED=1
+# Optional local model integrations (see SETUP.md):
+# Environment=STORYFORGE_COMFY_URL=http://127.0.0.1:8188
+ExecStart=%h/storyforge-ai/backend/.venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

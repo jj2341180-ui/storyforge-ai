@@ -1,0 +1,26 @@
+# Render Blueprint — when you create a service from this repository, Render
+# reads this file and pre-fills every setting automatically.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: storyforge-ai
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      # 512 MB free instance: single-threaded FFmpeg keeps peak RSS well under the limit.
+      - key: STORYFORGE_FFMPEG_THREADS
+        value: "1"
+      # Stop glibc creating one malloc arena per CPU: prevents RSS bloat on multi-core hosts.
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      # Piper's onnxruntime arena (~200 MB) never releases memory; run it in a child process
+      # that exits, so the 512 MB instance keeps enough headroom for FFmpeg rendering.
+      - key: STORYFORGE_TTS_SUBPROCESS
+        value: "1"
+      # Knob for future emergencies on even smaller hosts: STORYFORGE_X264_PRESET=ultrafast.
